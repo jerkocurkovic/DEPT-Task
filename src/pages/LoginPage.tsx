@@ -5,10 +5,11 @@ import '../styles/Login.css';
 
 const API_BASE = 'https://bootcamp2025.depster.me';
 
-function LoginPage({ setToken }) {
+function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [token, setToken] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ function LoginPage({ setToken }) {
       const res = await axios.post(`${API_BASE}/login`, { email, password });
       const token = res.data.data.token;
       localStorage.setItem('token', token);
+      localStorage.setItem('email', email);
       setToken(token);
       navigate('/books');
     } catch (err) {
