@@ -1,54 +1,69 @@
-# React + TypeScript + Vite
+# DEPT Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application that allows users to log in, fetch random books, and manage a personal library using browser local storage.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Description
 
-## Expanding the ESLint configuration
+This project fulfills the task of building a **book management app** using React, based on the following requirements:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- The app is **behind a login screen** (token-based authentication).
+- Users can **fetch random books** from an API.
+- Books can be **saved to a library** stored in `localStorage`.
+- Users can **remove books from their library**.
+- App is responsive and styled for a clean user experience.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+API used:  
+[https://bootcamp2025.depster.me/api/books](https://bootcamp2025.depster.me/api/books)  
+(secured with a Bearer token)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Authentication
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- The app checks for a saved token and redirects users to the login page if unauthenticated.
+- On login, the token and email are stored in `localStorage`.
+
+---
+
+## Features
+
+### Login Page
+
+- Simple login form.
+- Stores token and email in localStorage.  
+  
+![Login Page](./screenshots/DEPTTaskLogIn.png)
+
+---
+
+### Books Page
+
+- Button to fetch up to 3 random books.
+- Books are displayed in styled cards.
+- Each card shows title and author.
+- Users can **save books** to their library.
+- Already saved books show a **bold bookmark icon**.
+- Clicking again **removes** the book from the library.  
+
+![Books Page](./screenshots/DEPTTaskBooksPage.png)
+
+---
+
+### Library Page
+
+- Shows all saved books in a visually consistent format.
+- Each book can be **removed** from the library.
+- Layout matches the Books page styling.  
+
+![Library Page](./screenshots/DEPTTaskLibraryPage.png)
+
+---
+
+##  How to Run
+
+```bash
+npm install
+npm run dev
+
