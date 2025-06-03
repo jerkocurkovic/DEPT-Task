@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/LibraryPage.css'; 
 
 function LibraryPage() {
   const [library, setLibrary] = useState([]);
@@ -9,27 +10,36 @@ function LibraryPage() {
     setLibrary(saved);
   }, []);
 
-  const removeBook = (id) => {
-    const updated = library.filter(book => book.id !== id);
+  const removeBook = (indexToRemove) => {
+    const updated = library.filter((_, index) => index !== indexToRemove);
     setLibrary(updated);
     localStorage.setItem('library', JSON.stringify(updated));
   };
 
   return (
-    <div className="container">
-      <h1>📚 Moja Biblioteka</h1>
+    <div className="library-container">
+      <h1>My Library</h1>
       {library.length === 0 ? (
-        <p>Nema spremljenih knjiga.</p>
+        <p>No saved books.</p>
       ) : (
-        library.map(book => (
-          <div key={book.id} className="book">
-            <h3>{book.name}</h3>
-            <p>👤 {book.author}</p>
-            <button onClick={() => removeBook(book.id)}>❌ Ukloni</button>
-          </div>
-        ))
+        <div className="library-books-grid">
+          {library.map((book, index) => (
+            <div key={index} className="library-book-card">
+              <div className="library-book-cover">
+                <div className="library-book-content">
+                  <h3>{book.title}</h3>
+                  <p className="book-author">
+                    <i className='bx bxs-user'></i> {book.author}
+                  </p>
+                </div>
+              </div>
+              <button className="remove-btn" onClick={() => removeBook(index)}>
+                <i className='bx bx-x x-icon'></i> Remove</button>
+            </div>
+          ))}
+        </div>
       )}
-      <Link to="/books">← Nazad na knjige</Link>
+      <Link className="books-link" to="/books">Go to Books</Link>
     </div>
   );
 }
