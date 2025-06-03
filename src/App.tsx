@@ -5,6 +5,7 @@ import LibraryPage from './pages/LibraryPage';
 import PrivateRoute from './components/PrivateRoute';
 import Layout from './components/Layout';
 import './App.css';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
 
@@ -13,6 +14,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route element={<Layout />}>
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <BooksPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/books"
             element={
@@ -29,10 +38,10 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         
         </Route>
     
-        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
   );

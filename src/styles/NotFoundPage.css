@@ -1,0 +1,56 @@
+.notfound-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 100%;
+  margin-top: 60px;
+  padding: 2rem;
+}
+
+.book-card {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notfound-book {
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(135deg, #f0f0f0, #E59700);
+  border-radius: 6px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.notfound-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+  color: #000;
+}
+
+.notfound-text {
+  font-size: 1rem;
+  color: #000;
+  margin-top: 1rem;
+}
+
+.back-home-link {
+  margin-top: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #000;
+}
+
+.back-home-link:hover {
+  color: #E59700;
+}
+
+.home-icon {
+    padding-right: 0.4rem; 
+}
